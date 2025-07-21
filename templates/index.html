@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CUISINE MATCHER</title>
+  <style>
+    body {
+      background-color: antiquewhite;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #018d8d;
+      margin-bottom: 10px;
+    }
+
+    #wrapper {
+      background: #f5f5f0;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 100%;
+    }
+
+    .boxCont {
+      margin-bottom: 12px;
+    }
+
+    .boxCont label {
+      margin-left: 8px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #2575fc;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      background: #6a11cb;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <h1>Ingredient Software</h1>
+  <h2>What cuisine can you make?</h2>
+
+  <div id="wrapper">
+    <form id="ingredient-form">
+      <div class="boxCont">
+        <input type="checkbox" value="4" class="checkbox" id="apple" />
+        <label for="apple">Apple</label>
+      </div>
+      <div class="boxCont">
+        <input type="checkbox" value="247" class="checkbox" id="pear" />
+        <label for="pear">Pear</label>
+      </div>
+      <div class="boxCont">
+        <input type="checkbox" value="77" class="checkbox" id="cherry" />
+        <label for="cherry">Cherry</label>
+      </div>
+      <div class="boxCont">
+        <input type="checkbox" value="126" class="checkbox" id="fenugreek" />
+        <label for="fenugreek">Fenugreek</label>
+      </div>
+      <div class="boxCont">
+        <input type="checkbox" value="302" class="checkbox" id="sake" />
+        <label for="sake">Sake</label>
+      </div>
+      <div class="boxCont">
+        <input type="checkbox" value="327" class="checkbox" id="soysauce" />
+        <label for="soysauce">Soy Sauce</label>
+      </div>
+      <div class="boxCont">
+        <input type="checkbox" value="112" class="checkbox" id="cumin" />
+        <label for="cumin">Cumin</label>
+      </div>
+      <button type="submit">Predict Cuisine</button>
+    </form>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    const form = document.getElementById("ingredient-form");
+    const resultDiv = document.getElementById("result");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      // Gather checked checkboxes values as integers
+      const selected = Array.from(document.querySelectorAll(".checkbox:checked"))
+        .map(el => parseInt(el.value));
+
+      if (selected.length === 0) {
+        alert("Please select at least one ingredient.");
+        return;
+      }
+
+      try {
+        const response = await fetch("/predict", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ ingredients: selected }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          resultDiv.textContent = "🍽️ You can enjoy: " + data.prediction;
+        } else {
+          resultDiv.textContent = "Error: " + data.error;
+        }
+      } catch (err) {
+        resultDiv.textContent = "Error: Could not reach the server.";
+      }
+    });
+  </script>
+</body>
+</html>
