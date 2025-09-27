@@ -1,20 +1,59 @@
-# Cuisine Predictor Web App 
+# Flask Model Prediction Project
 
-A Flask-based web app that predicts the cuisine of a dish based on its ingredients.
+**Author:** devcherop  
+**Initial Commit:** 2 months ago  
 
-##  Tech Stack
-- Python, Flask
-- Scikit-learn / Pandas (if applicable)
-- Docker
-- GitHub Actions (CI)
+---
+
+## Project Overview
+This Flask web application allows users to make predictions based on a pre-trained machine learning model (`model.pkl`). Users select input features (ingredients), which are converted into a binary vector and fed into the model to get predictions.
+
+---
 
 ## Features
-- Web form to input ingredients
-- Predict cuisine using a trained ML model
-- Containerized with Docker
-- CI pipeline using GitHub Actions
+- Web interface for selecting input features.
+- Real-time predictions via Flask API.
+- Input validation and error handling.
+- Lightweight and easy-to-extend architecture.
 
-## How to Run (Docker)
+---
+
+---
+
+## Installation
+
+1. **Clone the repository:**
 ```bash
-docker build -t cuisine-predictor .
-docker run -p 5000:5000 cuisine-predictor
+git clone https://github.com/dev-cherop/FlaskModelProject.git
+cd FlaskModelProject
+
+Create a virtual environment and activate it:
+
+python -m venv venv
+source venv/bin/activate   # Linux/Mac
+venv\Scripts\activate      # Windows
+
+
+Install dependencies:
+
+pip install -r requirements.txt
+
+
+Run the Flask app:
+
+python app.py
+
+
+Access the app:
+Open http://127.0.0.1:5000
+ in your browser.
+
+Usage
+
+Open the web interface.
+
+Select the ingredients/features from the available list.
+
+Click the predict button.
+
+View the prediction returned by the model.
