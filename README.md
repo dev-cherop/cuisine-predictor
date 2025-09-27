@@ -1,7 +1,7 @@
 # Flask Model Prediction Project
 
 **Author:** devcherop  
-**Initial Commit:** 2 months ago  
+
 
 ---
 
