@@ -1,6 +1,6 @@
-# Flask Model Prediction Project
+# Cuisine prediction
 
-**Author:** devcherop  
+**Author:** dev-cherop  
 
 
 ---
@@ -45,15 +45,14 @@ python app.py
 
 
 Access the app:
-Open http://127.0.0.1:5000
- in your browser.
+Open http://127.0.0.1:5000 in your browser.
 
 Usage
 
-Open the web interface.
+1.Open the web interface.
 
-Select the ingredients/features from the available list.
+2.Select the ingredients/features from the available list.
 
-Click the predict button.
+3.Click the predict button.
 
-View the prediction returned by the model.
+4.View the prediction returned by the model.
